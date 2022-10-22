@@ -1,8 +1,8 @@
-const fs = require("fs")
+const fs = require("fs");
 
 class Container {
-  constructor (route){
-    this.route = route
+  constructor(route) {
+    this.route = route;
   }
 
   /**
@@ -12,14 +12,14 @@ class Container {
    */
   saveObject(object) {
     try {
-      const content = JSON.parse(fs.readFileSync(`./${this.route}`, 'utf-8'))
-      const id = content.length + 1
-      const newObject = {id,...object}
-      content.push(newObject)
-      fs.writeFileSync(`./${this.route}`, JSON.stringify(content, null, 2))
-      return id
+      const content = JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"));
+      const id = content.length + 1;
+      const newObject = { id, ...object };
+      content.push(newObject);
+      fs.writeFileSync(`./${this.route}`, JSON.stringify(content, null, 2));
+      return id;
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -30,11 +30,11 @@ class Container {
    */
   getById(idNumber) {
     try {
-      const content = JSON.parse(fs.readFileSync(`./${this.route}`, 'utf-8'))
-      const contentFilter = content.filter(e => e.id === idNumber)
-      console.log(contentFilter)
+      const content = JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"));
+      const contentFilter = content.filter((e) => e.id === idNumber);
+      console.log(contentFilter);
     } catch (err) {
-      console.log(err)    
+      console.log(err);
     }
   }
 
@@ -44,10 +44,10 @@ class Container {
    */
   getAll() {
     try {
-      const content = JSON.parse(fs.readFileSync(`./${this.route}`, 'utf-8'))
-      console.log(content)
+      const content = JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"));
+      console.log(content);
     } catch (err) {
-      return []
+      return [];
     }
   }
 
@@ -58,12 +58,15 @@ class Container {
    */
   deleteById(idNumber) {
     try {
-      const content = JSON.parse(fs.readFileSync(`./${this.route}`, 'utf-8'))
-      const contentFilter = content.filter(e => e.id !== idNumber)
-      fs.writeFileSync(`./${this.route}`, JSON.stringify(contentFilter, null, 2))
-      console.log(contentFilter)
+      const content = JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"));
+      const contentFilter = content.filter((e) => e.id !== idNumber);
+      fs.writeFileSync(
+        `./${this.route}`,
+        JSON.stringify(contentFilter, null, 2)
+      );
+      console.log(contentFilter);
     } catch (err) {
-      console.log(err)    
+      console.log(err);
     }
   }
 
@@ -72,21 +75,25 @@ class Container {
    */
   deleteAll() {
     try {
-      const deleteContent = fs.writeFileSync(`./${this.route}`, JSON.stringify([{}], null, 2))
-      console.log(deleteContent)
+      const deleteContent = fs.writeFileSync(
+        `./${this.route}`,
+        JSON.stringify([{}], null, 2)
+      );
+      console.log(deleteContent);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 }
 
-const route = new Container('products.json')
-// route.getAll()
-// route.deleteById(1)
-// route.getById(3)
-// route.deleteAll()
-// route.saveObject({
-//   "title": "Peugeot",
-//   "price": 7000,
-//   "thumbnail": "https://yt3.ggpht.com/ytc/AMLnZu9VHYpPZl_WboTCenxYZtchOdCvzgy53zvLsOGYig=s88-c-k-c0x00ffffff-no-rj"}
-// )
+const route = new Container("products.json");
+route.getAll();
+route.deleteById(1);
+route.getById(3);
+route.deleteAll();
+route.saveObject({
+  title: "Peugeot",
+  price: 7000,
+  thumbnail:
+    "https://yt3.ggpht.com/ytc/AMLnZu9VHYpPZl_WboTCenxYZtchOdCvzgy53zvLsOGYig=s88-c-k-c0x00ffffff-no-rj",
+});
