@@ -1,23 +1,3 @@
-// GETs
-
-app.get("/", (req, res) => {
-	res.send(
-		`Use the params "products" to see all products or "randomProducts" to see a random product`
-	);
-});
-
-app.get("/products", (req, res) => {
-	res.send(`<h1>Los productos disponibles son:</h1>\n${route.getAll()}`);
-});
-
-app.get("/randomProducts", (req, res) => {
-	const content = JSON.parse(route.getAll());
-	const randomId = Math.floor(Math.random() * content.length) + 1;
-	res.send(
-		`<h1>El producto random elegido es:</h1> ${route.getRandom(randomId)}`
-	);
-});
-
 // FILE STYSTEM
 
 const fs = require("fs");
@@ -58,6 +38,28 @@ const route = new Container("products.json");
 const express = require("express");
 const app = express();
 const port = 8080;
+
+// ROUTES
+
+app.get("/", (req, res) => {
+	res.send(
+		`Use the params "products" to see all products or "randomProducts" to see a random product`
+	);
+});
+
+app.get("/products", (req, res) => {
+	res.send(`<h1>Los productos disponibles son:</h1>\n${route.getAll()}`);
+});
+
+app.get("/randomProducts", (req, res) => {
+	const content = JSON.parse(route.getAll());
+	const randomId = Math.floor(Math.random() * content.length) + 1;
+	res.send(
+		`<h1>El producto random elegido es:</h1> ${route.getRandom(randomId)}`
+	);
+});
+
+// SERVER
 
 const server = app.listen(port, () => {
 	console.log(`Server runing at http://localhost:${port}`);
