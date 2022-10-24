@@ -1,13 +1,4 @@
-// EXPRESS
-
-const express = require("express");
-const app = express();
-const port = 8080;
-
-const server = app.listen(port, () => {
-	console.log(`Server runing at http://localhost:${port}`);
-});
-server.on("error", (err) => console.log(`Server Error: ${err}`));
+// GETs
 
 app.get("/", (req, res) => {
 	res.send(
@@ -61,3 +52,14 @@ class Container {
 }
 
 const route = new Container("products.json");
+
+// EXPRESS
+
+const express = require("express");
+const app = express();
+const port = 8080;
+
+const server = app.listen(port, () => {
+	console.log(`Server runing at http://localhost:${port}`);
+});
+server.on("error", (err) => console.log(`Server Error: ${err}`));
