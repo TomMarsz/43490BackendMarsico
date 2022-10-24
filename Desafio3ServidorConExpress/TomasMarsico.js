@@ -1,34 +1,3 @@
-// FILE STYSTEM
-
-const fs = require("fs");
-
-class Container {
-	constructor(route) {
-		this.route = route;
-	}
-
-	getRandom(idNumber) {
-		try {
-			const content = JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"));
-			const contentFilter = content.filter((e) => e.id === idNumber);
-			return JSON.stringify(contentFilter);
-		} catch (err) {
-			return err;
-		}
-	}
-
-	getAll() {
-		try {
-			const content = JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"));
-			return JSON.stringify(content);
-		} catch (err) {
-			return err;
-		}
-	}
-}
-
-const route = new Container("products.json");
-
 // EXPRESS
 
 const express = require("express");
@@ -51,8 +20,44 @@ app.get("/products", (req, res) => {
 });
 
 app.get("/randomProducts", (req, res) => {
-	const randomId = Math.floor(Math.random() * 10) + 1;
+	const content = JSON.parse(route.getAll());
+	const randomId = Math.floor(Math.random() * content.length) + 1;
 	res.send(
 		`<h1>El producto random elegido es:</h1> ${route.getRandom(randomId)}`
 	);
 });
+
+// FILE STYSTEM
+
+const fs = require("fs");
+
+class Container {
+	constructor(route) {
+		this.route = route;
+	}
+
+	getRandom(idNumber) {
+		try {
+			const content = JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"));
+			const contentFilter = JSON.stringify(
+				content.filter((e) => e.id === idNumber)
+			);
+			return contentFilter;
+		} catch (err) {
+			return err;
+		}
+	}
+
+	getAll() {
+		try {
+			const content = JSON.stringify(
+				JSON.parse(fs.readFileSync(`./${this.route}`, "utf-8"))
+			);
+			return content;
+		} catch (err) {
+			return err;
+		}
+	}
+}
+
+const route = new Container("products.json");
