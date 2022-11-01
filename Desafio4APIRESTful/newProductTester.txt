@@ -1,0 +1,5 @@
+{
+  "title": "Chevrolet",
+  "price": 8000,
+  "thumbnail": "https://media.gm.com/content/media/ar/es/chevrolet/_jcr_content/altmainimage.resize.jpg/1572287050970.jpg"
+}
