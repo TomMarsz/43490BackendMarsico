@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+
+  div(class="container mt-3")  
+    h1(class="")!=titulo 
+    form(action="/api/productos", method="post" name="products")
+      label(for="productName") Nombre del Producto
+      input(type="text" name="productName")
+      br
+      label(for="productPrice") Precio del Producto 
+      input(type="text" name="productPrice")
+      br
+      label(for="productPhoto") Foto URL del Producto 
+      input(type="text" name="productPhoto")
+      br
+      button Enviar
