@@ -1,23 +1,22 @@
 const express = require("express");
-const morgan = require("morgan");
 const router = require("./routes/productRoutes");
 const path = require("path");
 const app = express();
 
-app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + "/public"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use("/api/products", router);
+
 app.get("/", (req, res) => {
 	res.redirect("/api/products");
 });
 
-router.get("/api/productos", async (req, res) => {
+router.get("/api/products", async (req, res) => {
 	try {
 		const allProducts = await path.getAll();
 		res.json(allProducts);
@@ -26,7 +25,7 @@ router.get("/api/productos", async (req, res) => {
 	}
 });
 
-router.get("/api/productos/:id", async (req, res) => {
+router.get("/api/products/:id", async (req, res) => {
 	try {
 		const newId = Number(req.params.id);
 		const productById = await path.getById(newId);
@@ -41,10 +40,10 @@ router.get("/api/productos/:id", async (req, res) => {
 	}
 });
 
-router.post("/api/productos", async (req, res) => {
+router.post("/api/products", async (req, res) => {
 	try {
-		const producto = { name: req.body.name, price: Number(req.body.price) };
-		const newProduct = await path.save(producto);
+		const product = { title: req.body.title, price: Number(req.body.price) };
+		const newProduct = await path.save(product);
 		const allProducts = await path.getAll();
 		res.json(allProducts);
 	} catch (error) {
@@ -52,7 +51,7 @@ router.post("/api/productos", async (req, res) => {
 	}
 });
 
-router.delete("/api/productos/:id", async (req, res) => {
+router.delete("/api/products/:id", async (req, res) => {
 	try {
 		const id = Number(req.params.id);
 		const elementDeleted = await path.deleteByid(id);
@@ -62,7 +61,7 @@ router.delete("/api/productos/:id", async (req, res) => {
 	}
 });
 
-router.put("/api/productos/:id", async (req, res) => {
+router.put("/api/products/:id", async (req, res) => {
 	try {
 		const id = Number(req.params.id);
 		const modifyProduct = await path.modifyProductById(id, req.body);

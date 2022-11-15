@@ -22,17 +22,17 @@ class Container {
 			if (lastId === undefined) {
 				const newProductFromCero = {
 					id: 1,
-					name: newProduct.name,
+					title: newProduct.title,
 					price: newProduct.price,
-					image: newProduct.image,
+					thumbnail: newProduct.thumbnail,
 				};
 				await content.push(newProductFromCero);
 			} else {
 				const newProductCompleted = {
 					id: lastId.id + 1,
-					name: newProduct.name,
+					title: newProduct.title,
 					price: newProduct.price,
-					image: newProduct.image,
+					thumbnail: newProduct.thumbnail,
 				};
 				await content.push(newProductCompleted);
 			}
@@ -82,6 +82,7 @@ class Container {
 			console.log(err);
 		}
 	}
+
 	async modifyProductById(id, product) {
 		try {
 			const content = await this.getAll();
@@ -91,9 +92,9 @@ class Container {
 			if (!isEmpty) {
 				const newModifiedProduct = {
 					id: id,
-					name: `${product.name}`,
+					title: `${product.title}`,
 					price: product.price,
-					image: `${product.image}`,
+					thumbnail: `${product.thumbnail}`,
 				};
 				content.splice(id - 1, 1, newModifiedProduct);
 				await fs.writeFile(`./${this.route}`, JSON.stringify(content, null, 2));

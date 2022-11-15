@@ -12,10 +12,11 @@ const storage = multer.diskStorage({
 		cb(null, file.originalname);
 	},
 });
+
 router.use(
 	multer({
 		storage,
-	}).single("image")
+	}).single("thumbnail")
 );
 
 router.get("/", async (req, res) => {
@@ -26,11 +27,9 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", (req, res) => {
-	console.log("req.body", req.body);
 	const body = req.body;
 	const photo = req.file;
-	console.log(photo);
-	body.image = `/uploads/${photo.filename}`;
+	body.thumbnail = `/uploads/${photo.filename}`;
 	path.save(body);
 	res.redirect("/api/products");
 });
