@@ -1,0 +1,27 @@
+<section class="mt-3">
+	<div class="container">
+		<h1>Ingrese un nuevo Producto</h1>
+		<form
+			action="/api/products"
+			method="post"
+			enctype="multipart/form-data"
+			class="my-5"
+		>
+			<div class="mb-2">
+				<label class="form-label">Nombre del Producto</label>
+				<input type="text" class="form-control" value="" name="title" />
+			</div>
+
+			<div class="mb-2">
+				<label class="form-label">Precio del Producto</label>
+				<input type="text" class="form-control" value="" name="price" />
+			</div>
+
+			<div class="mb-2">
+				<label class="form-label">Foto del Producto</label><br />
+				<input class="file-input" type="file" name="thumbnail" />
+			</div>
+			<button class="btn btn-primary">Guardar</button>
+		</form>
+	</div>
+</section>

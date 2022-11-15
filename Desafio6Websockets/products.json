@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"title": "Mitsubishi",
+		"price": 3370,
+		"thumbnail": "/uploads/logoMitsubishi.png"
+	},
+	{
+		"id": 2,
+		"title": "Toyota",
+		"price": 7862,
+		"thumbnail": "/uploads/logoToyota.png"
+	},
+	{
+		"id": 3,
+		"title": "Ford",
+		"price": 12000,
+		"thumbnail": "/uploads/logoFord.png"
+	}
+]
