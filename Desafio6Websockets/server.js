@@ -10,10 +10,20 @@ const app = express();
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
-const products = [];
+const mesagges = [];
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+io.on("connection", function (socket) {
+	console.log("New client online!");
+	socket.emit("mesagges", mesagges);
+
+	socket.on("newMessage", (data) => {
+		mesagges.push(data);
+		io.sockets.emit("mesagges", mesagges);
+	});
+});
 
 app.use(express.static(__dirname + "/public"));
 app.set("views", path.join(__dirname, "views"));

@@ -1,15 +1,14 @@
 const socket = io.connect();
 
-function addProduct(e) {
-	const productTitle = document.getElementById("title").value;
-	const productPrice = document.getElementById("price").value;
-	const productThumbnail = document.getElementById("thumbnail").value;
-	const newProduct = {
-		title: productTitle,
-		price: productPrice,
-		thumbnail: productThumbnail,
+function addMessage(e) {
+	const email = document.getElementById("email").value;
+	const date = new Date.now();
+	const message = document.getElementById("message").value;
+	const newMessage = {
+		email: email,
+		message: message,
 	};
-	socket.emit("newProduct", newProduct);
+	socket.emit("newMessage", newMessage);
 	return false;
 }
 
@@ -18,17 +17,16 @@ function render(data) {
 		.map((elem, index) => {
 			return `
 			<div>
-				<strong>${elem.nombre}</strong>: 
-				<em>${elem.mensaje}</em>
+				<strong>${elem.email}</strong>: 
+				<em>${elem.message}</em>
 			</div>
 		`;
 		})
 		.join(" ");
 
-	document.getElementById("mensajes").innerHTML = html;
+	document.getElementById("message").innerHTML = html;
 }
 
-socket.on("mensajes", function (data) {
-	console.log(data);
+socket.on("mesagges", function (data) {
 	render(data);
 });
