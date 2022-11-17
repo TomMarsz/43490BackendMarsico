@@ -2,10 +2,11 @@ const socket = io.connect();
 
 function addMessage(e) {
 	const email = document.getElementById("email").value;
-	const date = new Date.now();
+	const date = new Date().toString();
 	const message = document.getElementById("message").value;
 	const newMessage = {
 		email: email,
+		date: date,
 		message: message,
 	};
 	socket.emit("newMessage", newMessage);
@@ -17,8 +18,7 @@ function render(data) {
 		.map((elem, index) => {
 			return `
 			<div>
-				<strong>${elem.email}</strong>: 
-				<em>${elem.message}</em>
+				<strong class="text-primary">${elem.email}</strong> - <span class="text-danger">${elem.date}</span>	- <em class="text-success">${elem.message}</em>
 			</div>
 		`;
 		})
