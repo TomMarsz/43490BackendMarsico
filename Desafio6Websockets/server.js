@@ -1,7 +1,16 @@
 const express = require("express");
 const router = require("./routes/productRoutes");
 const path = require("path");
+
+const { Server: HttpServer } = require("http");
+const { Server: IOServer } = require("socket.io");
+
 const app = express();
+
+const httpServer = new HttpServer(app);
+const io = new IOServer(httpServer);
+
+const products = [];
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -72,7 +81,7 @@ router.put("/api/products/:id", async (req, res) => {
 });
 
 const port = 8080;
-const server = app.listen(port, () => {
+const server = httpServer.listen(port, () => {
 	console.log(`Server listening http://localhost:${port}`);
 });
 server.on("error", (err) => console.log(`Server Error: ${err}`));

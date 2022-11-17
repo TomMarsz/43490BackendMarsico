@@ -4,17 +4,18 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- CSS only -->
+		<title>Desafío 5 - Motores de Plantillas</title>
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 			rel="stylesheet"
 			integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 			crossorigin="anonymous"
 		/>
-		<title>Desafío 5 - Motores de Plantillas</title>
+		<script src="/socket.io/socket.io.js"></script>
 	</head>
 
 	<body>
 		<%- include('./partials/form.ejs') %> <%- include('./partials/list.ejs') %>
+		<script src="../public/js/main.js"></script>
 	</body>
 </html>

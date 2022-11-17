@@ -2,6 +2,7 @@
 	<div class="container">
 		<h1>Ingrese un nuevo Producto</h1>
 		<form
+			onsubmit="return addProduct(this)"
 			action="/api/products"
 			method="post"
 			enctype="multipart/form-data"
@@ -9,17 +10,17 @@
 		>
 			<div class="mb-2">
 				<label class="form-label">Nombre del Producto</label>
-				<input type="text" class="form-control" value="" name="title" />
+				<input type="text" class="form-control" value="" name="title" id="title" />
 			</div>
 
 			<div class="mb-2">
 				<label class="form-label">Precio del Producto</label>
-				<input type="text" class="form-control" value="" name="price" />
+				<input type="text" class="form-control" value="" name="price" id="price" />
 			</div>
 
 			<div class="mb-2">
 				<label class="form-label">Foto del Producto</label><br />
-				<input class="file-input" type="file" name="thumbnail" />
+				<input class="file-input" type="file" name="thumbnail" id="thumbnail" />
 			</div>
 			<button class="btn btn-primary">Guardar</button>
 		</form>
